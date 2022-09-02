@@ -14,6 +14,7 @@ class Header extends StatefulWidget {
 
 class _HeaderState extends State<Header> {
 
+  int selected = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +26,7 @@ class _HeaderState extends State<Header> {
           onTap: (){
             setState(() {
               Navigator.push(context, MaterialPageRoute(builder: (context) => WebViewAapp()));
+              selected = 1;
             });
           },
           child: Container(
@@ -32,8 +34,14 @@ class _HeaderState extends State<Header> {
             width: 125,
             height: 50,
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.black, width: 3),
-            ),
+                border: Border.all(
+                    color: selected == 1
+                        ? Colors.green
+                        : Colors.black,
+                    width: 3),
+                color: selected == 1
+                    ? Colors.green[100]
+                    : Colors.transparent),
             child: Text(
               'Site Oficial',
               textAlign: TextAlign.center,
