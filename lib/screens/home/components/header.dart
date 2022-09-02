@@ -13,26 +13,35 @@ class Header extends StatefulWidget {
 }
 
 class _HeaderState extends State<Header> {
+
+
   @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
-          margin: EdgeInsets.only(top: 30),
-          width: 125,
-          height: 50,
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.black, width: 3),
-          ),
-          child: Text(
-            'Site Oficial',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w500,
-              height: 1.8,
+        GestureDetector(
+          onTap: (){
+            setState(() {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => WebViewAapp()));
+            });
+          },
+          child: Container(
+            margin: EdgeInsets.only(top: 30),
+            width: 125,
+            height: 50,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black, width: 3),
+            ),
+            child: Text(
+              'Site Oficial',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+                height: 1.8,
+              ),
             ),
           ),
         ),

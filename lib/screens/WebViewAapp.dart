@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
+import 'home/components/menu.dart';
+
 class WebViewAapp extends StatefulWidget {
   const WebViewAapp({Key? key}) : super(key: key);
 
@@ -17,15 +19,6 @@ class _WebViewAappState extends State<WebViewAapp> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        centerTitle: true,
-        title: Text(
-          'Star Wars',
-          style: TextStyle(color: Colors.black),
-        ),
-      ),
       body: Stack(
         children: [
           InAppWebView(

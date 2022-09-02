@@ -14,18 +14,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Star Wars',
       theme: ThemeData(
-        //primarySwatch: Colors.blue,
+        primarySwatch: Colors.blue,
       ),
       home: const HomePage(),
     );
   }
 }
-
-
-
-
-
-
-
-
-
