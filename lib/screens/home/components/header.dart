@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:star_wars/screens/home/components/avatar.dart';
 import 'package:star_wars/screens/lists/favoritos.dart';
 import '../../WebViewAapp.dart';
-import 'menu.dart';
+
 
 class Header extends StatefulWidget {
   const Header({
@@ -54,7 +55,9 @@ class _HeaderState extends State<Header> {
           ),
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => Avatar()));
+          },
           icon: Icon(Icons.account_circle_outlined),
           iconSize: 90,
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:star_wars/screens/home/home_filmes.dart';
+import 'package:star_wars/screens/lists/personagens.dart';
 import '../home/components/header.dart';
-import '../home/components/menu.dart';
 
 class Favoritos extends StatefulWidget {
   const Favoritos({Key? key}) : super(key: key);
@@ -10,7 +11,6 @@ class Favoritos extends StatefulWidget {
 }
 
 class _FavoritosState extends State<Favoritos> {
-
   List<String> favoritos = ['Luke Skywalker', 'A New Hope'];
 
   @override
@@ -21,7 +21,72 @@ class _FavoritosState extends State<Favoritos> {
         child: Column(
           children: [
             Header(),
-            Menu(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => HomeFilmes()));
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(top: 30),
+                    width: 125,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black, width: 3),
+                    ),
+                    child: Text(
+                      'Filmes',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        height: 1.8,
+                      ),
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Personagens()));
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(top: 30),
+                    width: 125,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black, width: 3),
+                    ),
+                    child: Text(
+                      'Personagens',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        height: 1.8,
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 30),
+                  width: 125,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.green, width: 3),
+                    color: Colors.green[100],
+                  ),
+                  child: Text(
+                    'Favoritos',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                      height: 1.8,
+                    ),
+                  ),
+                )
+              ],
+            ),
             SizedBox(
               height: 500,
               child: ListView.builder(
@@ -34,6 +99,7 @@ class _FavoritosState extends State<Favoritos> {
       ),
     );
   }
+
   Widget buildCardNames(int index) {
     return Container(
       margin: EdgeInsets.only(top: 30),
@@ -42,26 +108,15 @@ class _FavoritosState extends State<Favoritos> {
       decoration: BoxDecoration(
         border: Border.all(color: Colors.black, width: 3),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 50),
-            child: Text(
-              favoritos[index],
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
-                height: 1.5,
-              ),
-            ),
+      child: Center(
+        child: Text(
+          favoritos[index],
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+            height: 1.5,
           ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.favorite_border),
-            iconSize: 50,
-          )
-        ],
+        ),
       ),
     );
   }

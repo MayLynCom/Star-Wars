@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'home/components/header.dart';
+import 'package:star_wars/screens/home/home_filmes.dart';
+
 
 
 class WebViewAapp extends StatefulWidget {
@@ -22,7 +23,38 @@ class _WebViewAappState extends State<WebViewAapp> {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
         child: Column(
           children: [
-            Header(),
+          Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              margin: EdgeInsets.only(top: 30),
+              width: 125,
+              height: 50,
+              decoration: BoxDecoration(
+                  border: Border.all(
+                      color:Colors.green,
+                      width: 3),
+                  color: Colors.green[100]),
+              child: Text(
+                'Site Oficial',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  height: 1.8,
+                ),
+              ),
+            ),
+            IconButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => HomeFilmes()));
+              },
+              icon: Icon(Icons.account_circle_outlined),
+              iconSize: 90,
+            ),
+          ],
+        ),
             Center(
               child: SizedBox(
                 height: 600,
