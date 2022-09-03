@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:star_wars/screens/lists/favoritos.dart';
 import 'package:star_wars/screens/lists/personagens.dart';
-import '../../models/fav_list.dart';
+import '../../models/lists.dart';
 import 'components/header.dart';
 
 
@@ -87,131 +87,60 @@ class _HomeFilmesState extends State<HomeFilmes> {
               ],
             ),
             Container(
-              margin: EdgeInsets.only(top: 30),
-              width: 350,
-              height: 110,
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black, width: 3),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 50),
-                    child: Text(
-                      'A New Hope',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                        height: 1.5,
-                      ),
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      setState(() {
-                        if(favlist.contains('A New Hope')){
-                          favlist.remove('A New Hope');
-                          print(favlist);
-                        }else{
-                          favlist.add('A New Hope');
-                          print(favlist);
-                        }
-                      });
-                    },
-                    icon: favlist.contains('A New Hope')
-                        ? Icon(Icons.favorite)
-                        : Icon(Icons.favorite_border),
-                    iconSize: 50,
-                  )
-                ],
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 30),
-              width: 350,
-              height: 110,
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black, width: 3),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 50),
-                    child: Text(
-                      'The Empire Strikes Back',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                        height: 1.5,
-                      ),
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      setState(() {
-                        if(favlist.contains('The Empire Strikes Back')){
-                          favlist.remove('The Empire Strikes Back');
-                          print(favlist);
-                        }else{
-                          favlist.add('The Empire Strikes Back');
-                          print(favlist);
-                        }
-                      });
-                    },
-                    icon: favlist.contains('The Empire Strikes Back')
-                        ? Icon(Icons.favorite)
-                        : Icon(Icons.favorite_border),
-                    iconSize: 50,
-                  )
-                ],
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 30),
-              width: 350,
-              height: 110,
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black, width: 3),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 50),
-                    child: Text(
-                      'Return Of The Jedi',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                        height: 1.5,
-                      ),
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      setState(() {
-                        if(favlist.contains('Return Of The Jedi')){
-                          favlist.remove('Return Of The Jedi');
-                          print(favlist);
-                        }else{
-                          favlist.add('Return Of The Jedi');
-                          print(favlist);
-                        }
-                      });
-                    },
-                    icon: favlist.contains('Return Of The Jedi')
-                        ? Icon(Icons.favorite)
-                        : Icon(Icons.favorite_border),
-                    iconSize: 50,
-                  )
-                ],
+              padding: EdgeInsets.only(top: 20),
+              height: 500,
+              child: ListView.builder(
+                itemCount: filmes.length,
+                itemBuilder: (context, index) => buildFilmes(index),
               ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  Widget buildFilmes(int index) {
+    return Container(
+            margin: EdgeInsets.only(top: 30),
+            width: 350,
+            height: 110,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black, width: 3),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 50),
+                  child: Text(
+                    filmes[index],
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                      height: 1.5,
+                    ),
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      if(favlist.contains(filmes[index])){
+                        favlist.remove(filmes[index]);
+                        print(favlist);
+                      }else{
+                        favlist.add(filmes[index]);
+                        print(favlist);
+                      }
+                    });
+                  },
+                  icon: favlist.contains(filmes[index])
+                      ? Icon(Icons.favorite)
+                      : Icon(Icons.favorite_border),
+                  iconSize: 50,
+                )
+              ],
+            ),
+          );
   }
 }

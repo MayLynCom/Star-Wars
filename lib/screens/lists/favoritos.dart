@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:star_wars/screens/home/home_filmes.dart';
 import 'package:star_wars/screens/lists/personagens.dart';
-import '../../models/fav_list.dart';
+import '../../models/lists.dart';
 import '../home/components/header.dart';
 
 class Favoritos extends StatefulWidget {
-
-  const Favoritos({Key? key,}) : super(key: key);
+  const Favoritos({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<Favoritos> createState() => _FavoritosState();
@@ -92,7 +93,7 @@ class _FavoritosState extends State<Favoritos> {
               height: 500,
               child: ListView.builder(
                 itemCount: favlist.length,
-                itemBuilder: (context, index) => buildCardNames(index),
+                itemBuilder: (context, index) => buildFav(index),
               ),
             ),
           ],
@@ -101,13 +102,16 @@ class _FavoritosState extends State<Favoritos> {
     );
   }
 
-  Widget buildCardNames(int index){
+  Widget buildFav(int index) {
     return Container(
       margin: EdgeInsets.only(top: 30),
       width: 350,
       height: 110,
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.black, width: 3),
+        border: Border.all(
+          color: Colors.black,
+          width: 3,
+        ),
       ),
       child: Center(
         child: Text(
