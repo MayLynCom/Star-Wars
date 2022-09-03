@@ -17,9 +17,6 @@ class _PersonagensState extends State<Personagens> {
 
   List<String> favoritos = [];
 
-  bool saved = true;
-  bool saved1 = true;
-  bool saved2 = true;
 
   @override
   Widget build(BuildContext context) {
