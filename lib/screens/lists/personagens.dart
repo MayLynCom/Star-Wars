@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:star_wars/screens/home/home_filmes.dart';
 import 'package:star_wars/screens/lists/favoritos.dart';
-
+import '../../models/fav_list.dart';
 import '../home/components/header.dart';
 
 class Personagens extends StatefulWidget {
@@ -14,9 +14,12 @@ class Personagens extends StatefulWidget {
 }
 
 class _PersonagensState extends State<Personagens> {
+
   List<String> favoritos = [];
 
   bool saved = true;
+  bool saved1 = true;
+  bool saved2 = true;
 
   @override
   Widget build(BuildContext context) {
@@ -116,16 +119,18 @@ class _PersonagensState extends State<Personagens> {
                   IconButton(
                     onPressed: () {
                       setState(() {
-                        if (saved) {
-                          saved = false;
-                        } else {
-                          saved = true;
+                        if(favlist.contains('Luke Skywalker')){
+                          favlist.remove('Luke Skywalker');
+                          print(favlist);
+                        }else{
+                          favlist.add('Luke Skywalker');
+                          print(favlist);
                         }
                       });
                     },
-                    icon: saved
-                        ? Icon(Icons.favorite_border)
-                        : Icon(Icons.favorite),
+                    icon: favlist.contains('Luke Skywalker')
+                        ? Icon(Icons.favorite)
+                        : Icon(Icons.favorite_border),
                     iconSize: 50,
                   )
                 ],
@@ -155,16 +160,18 @@ class _PersonagensState extends State<Personagens> {
                   IconButton(
                     onPressed: () {
                       setState(() {
-                        if (saved) {
-                          saved = false;
-                        } else {
-                          saved = true;
+                        if(favlist.contains('C-3PO')){
+                          favlist.remove('C-3PO');
+                          print(favlist);
+                        }else{
+                          favlist.add('C-3PO');
+                          print(favlist);
                         }
                       });
                     },
-                    icon: saved
-                        ? Icon(Icons.favorite_border)
-                        : Icon(Icons.favorite),
+                    icon: favlist.contains('C-3PO')
+                        ? Icon(Icons.favorite)
+                        : Icon(Icons.favorite_border),
                     iconSize: 50,
                   )
                 ],
@@ -194,16 +201,18 @@ class _PersonagensState extends State<Personagens> {
                   IconButton(
                     onPressed: () {
                       setState(() {
-                        if (saved) {
-                          saved = false;
-                        } else {
-                          saved = true;
+                        if(favlist.contains('Darth Vader')){
+                          favlist.remove('Darth Vader');
+                          print(favlist);
+                        }else{
+                          favlist.add('Darth Vader');
+                          print(favlist);
                         }
                       });
                     },
-                    icon: saved
-                        ? Icon(Icons.favorite_border)
-                        : Icon(Icons.favorite),
+                    icon: favlist.contains('Darth Vader')
+                        ? Icon(Icons.favorite)
+                        : Icon(Icons.favorite_border),
                     iconSize: 50,
                   )
                 ],

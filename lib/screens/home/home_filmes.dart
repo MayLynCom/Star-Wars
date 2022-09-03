@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:star_wars/screens/lists/favoritos.dart';
 import 'package:star_wars/screens/lists/personagens.dart';
+import '../../models/fav_list.dart';
 import 'components/header.dart';
 
 //import 'package:http/http.dart' as http;
@@ -19,9 +20,10 @@ class HomeFilmes extends StatefulWidget {
 }
 
 class _HomeFilmesState extends State<HomeFilmes> {
-  List<String> favoritos = [];
 
   bool saved = true;
+  bool saved1 = true;
+  bool saved2 = true;
 
   @override
   Widget build(BuildContext context) {
@@ -120,16 +122,18 @@ class _HomeFilmesState extends State<HomeFilmes> {
                   IconButton(
                     onPressed: () {
                       setState(() {
-                        if(saved){
-                          saved = false;
+                        if(favlist.contains('A New Hope')){
+                          favlist.remove('A New Hope');
+                          print(favlist);
                         }else{
-                          saved = true;
+                          favlist.add('A New Hope');
+                          print(favlist);
                         }
                       });
                     },
-                    icon: saved
-                        ? Icon(Icons.favorite_border)
-                        : Icon(Icons.favorite),
+                    icon: favlist.contains('A New Hope')
+                        ? Icon(Icons.favorite)
+                        : Icon(Icons.favorite_border),
                     iconSize: 50,
                   )
                 ],
@@ -159,16 +163,18 @@ class _HomeFilmesState extends State<HomeFilmes> {
                   IconButton(
                     onPressed: () {
                       setState(() {
-                        if(saved){
-                          saved = false;
+                        if(favlist.contains('The Empire Strikes Back')){
+                          favlist.remove('The Empire Strikes Back');
+                          print(favlist);
                         }else{
-                          saved = true;
+                          favlist.add('The Empire Strikes Back');
+                          print(favlist);
                         }
                       });
                     },
-                    icon: saved
-                        ? Icon(Icons.favorite_border)
-                        : Icon(Icons.favorite),
+                    icon: favlist.contains('The Empire Strikes Back')
+                        ? Icon(Icons.favorite)
+                        : Icon(Icons.favorite_border),
                     iconSize: 50,
                   )
                 ],
@@ -198,16 +204,18 @@ class _HomeFilmesState extends State<HomeFilmes> {
                   IconButton(
                     onPressed: () {
                       setState(() {
-                        if(saved){
-                          saved = false;
+                        if(favlist.contains('Return Of The Jedi')){
+                          favlist.remove('Return Of The Jedi');
+                          print(favlist);
                         }else{
-                          saved = true;
+                          favlist.add('Return Of The Jedi');
+                          print(favlist);
                         }
                       });
                     },
-                    icon: saved
-                        ? Icon(Icons.favorite_border)
-                        : Icon(Icons.favorite),
+                    icon: favlist.contains('Return Of The Jedi')
+                        ? Icon(Icons.favorite)
+                        : Icon(Icons.favorite_border),
                     iconSize: 50,
                   )
                 ],
