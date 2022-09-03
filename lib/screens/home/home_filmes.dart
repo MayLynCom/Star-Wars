@@ -4,13 +4,6 @@ import 'package:star_wars/screens/lists/personagens.dart';
 import '../../models/fav_list.dart';
 import 'components/header.dart';
 
-//import 'package:http/http.dart' as http;
-
-// fetch() async {
-//   var url = Uri.https('https://swapi.dev/api/', 'films/1/');
-//   var response = await http.get(url);
-//   print(response.body);
-// } tentar dps
 
 class HomeFilmes extends StatefulWidget {
   HomeFilmes({Key? key}) : super(key: key);
@@ -20,11 +13,6 @@ class HomeFilmes extends StatefulWidget {
 }
 
 class _HomeFilmesState extends State<HomeFilmes> {
-
-  bool saved = true;
-  bool saved1 = true;
-  bool saved2 = true;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -8,7 +8,6 @@ class Favoritos extends StatefulWidget {
 
   const Favoritos({Key? key,}) : super(key: key);
 
-
   @override
   State<Favoritos> createState() => _FavoritosState();
 }

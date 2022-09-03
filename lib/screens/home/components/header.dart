@@ -3,7 +3,6 @@ import 'package:star_wars/screens/home/components/avatar.dart';
 import 'package:star_wars/screens/lists/favoritos.dart';
 import '../../WebViewAapp.dart';
 
-
 class Header extends StatefulWidget {
   const Header({
     Key? key,
@@ -27,7 +26,6 @@ class _HeaderState extends State<Header> {
           onTap: (){
             setState(() {
               Navigator.push(context, MaterialPageRoute(builder: (context) => WebViewAapp()));
-              selected = 1;
             });
           },
           child: Container(
@@ -36,13 +34,9 @@ class _HeaderState extends State<Header> {
             height: 50,
             decoration: BoxDecoration(
                 border: Border.all(
-                    color: selected == 1
-                        ? Colors.green
-                        : Colors.black,
+                    color:  Colors.black,
                     width: 3),
-                color: selected == 1
-                    ? Colors.green[100]
-                    : Colors.transparent),
+                color: Colors.transparent),
             child: Text(
               'Site Oficial',
               textAlign: TextAlign.center,

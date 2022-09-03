@@ -14,10 +14,6 @@ class Personagens extends StatefulWidget {
 }
 
 class _PersonagensState extends State<Personagens> {
-
-  List<String> favoritos = [];
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
