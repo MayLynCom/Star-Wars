@@ -101,15 +101,24 @@ class _FavoritosState extends State<Favoritos> {
       ),
     );
   }
+  Color teste(){
+    for(String nome in favlist){
+      if(nome == 'A New Hope'){
+        return Colors.red;
+      }
+    }
+    return Colors.lightGreenAccent;
+  }
 
   Widget buildFav(int index) {
+
     return Container(
       margin: EdgeInsets.only(top: 30),
       width: 350,
       height: 110,
       decoration: BoxDecoration(
         border: Border.all(
-          color: Colors.black,
+          color: teste(),
           width: 3,
         ),
       ),

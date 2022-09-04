@@ -91,9 +91,25 @@ class _PersonagensState extends State<Personagens> {
             Container(
               padding: EdgeInsets.only(top: 20),
               height: 500,
-              child: ListView.builder(
-                itemCount: personagens.length,
-                itemBuilder: (context, index) => buildPersonagens(index),
+              child: FutureBuilder<List>(
+                future: PersonagensAPI(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return Center(
+                      child: Text('Erro ao carregar Filmes'),
+                    );
+                  }
+                  if (snapshot.hasData) {
+                    return ListView.builder(
+                      itemCount: 3,
+                      itemBuilder: (context, index) =>
+                          buildPersonagens(index, snapshot),
+                    );
+                  }
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
               ),
             ),
           ],
@@ -102,49 +118,47 @@ class _PersonagensState extends State<Personagens> {
     );
   }
 
-  Widget buildPersonagens(int index) {
+  Widget buildPersonagens(int index, snapshot) {
     return Container(
-            margin: EdgeInsets.only(top: 30),
-            width: 350,
-            height: 110,
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black, width: 3),
+      margin: EdgeInsets.only(top: 30),
+      width: 350,
+      height: 110,
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.black, width: 3),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 50),
+            child: Text(
+              snapshot.data![index]['name'],
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+                height: 1.5,
+              ),
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 50),
-                  child: Text(
-                    personagens[index],
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      height: 1.5,
-                    ),
-                  ),
-                ),
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      if(favlist.contains(personagens[index])){
-                        favlist.remove(personagens[index]);
-                        print(favlist);
-                      }else{
-                        favlist.add(personagens[index]);
-                        print(favlist);
-                      }
-                    });
-                  },
-                  icon: favlist.contains(personagens[index])
-                      ? Icon(Icons.favorite)
-                      : Icon(Icons.favorite_border),
-                  iconSize: 50,
-                )
-              ],
-            ),
-          );
+          ),
+          IconButton(
+            onPressed: () {
+              setState(() {
+                if (favlist.contains(snapshot.data![index]['name'])) {
+                  favlist.remove(snapshot.data![index]['name']);
+                  print(favlist);
+                } else {
+                  favlist.add(snapshot.data![index]['name']);
+                  print(favlist);
+                }
+              });
+            },
+            icon: favlist.contains(snapshot.data![index]['name'])
+                ? Icon(Icons.favorite)
+                : Icon(Icons.favorite_border),
+            iconSize: 50,
+          )
+        ],
+      ),
+    );
   }
-
-
 }

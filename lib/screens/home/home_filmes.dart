@@ -4,7 +4,6 @@ import 'package:star_wars/screens/lists/personagens.dart';
 import '../../models/lists.dart';
 import 'components/header.dart';
 
-
 class HomeFilmes extends StatefulWidget {
   HomeFilmes({Key? key}) : super(key: key);
 
@@ -89,9 +88,25 @@ class _HomeFilmesState extends State<HomeFilmes> {
             Container(
               padding: EdgeInsets.only(top: 20),
               height: 500,
-              child: ListView.builder(
-                itemCount: filmes.length,
-                itemBuilder: (context, index) => buildFilmes(index),
+              child: FutureBuilder<List>(
+                future: FilmesAPI(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return Center(
+                      child: Text('Erro ao carregar Filmes'),
+                    );
+                  }
+                  if (snapshot.hasData) {
+                    return ListView.builder(
+                      itemCount: 3,
+                      itemBuilder: (context, index) =>
+                          buildFilmes(index, snapshot),
+                    );
+                  }
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
               ),
             ),
           ],
@@ -100,47 +115,47 @@ class _HomeFilmesState extends State<HomeFilmes> {
     );
   }
 
-  Widget buildFilmes(int index) {
+  Widget buildFilmes(int index, snapshot) {
     return Container(
-            margin: EdgeInsets.only(top: 30),
-            width: 350,
-            height: 110,
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black, width: 3),
+      margin: EdgeInsets.only(top: 30),
+      width: 350,
+      height: 110,
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.black, width: 3),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 50),
+            child: Text(
+              snapshot.data![index]['title'],
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+                height: 1.5,
+              ),
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 50),
-                  child: Text(
-                    filmes[index],
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      height: 1.5,
-                    ),
-                  ),
-                ),
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      if(favlist.contains(filmes[index])){
-                        favlist.remove(filmes[index]);
-                        print(favlist);
-                      }else{
-                        favlist.add(filmes[index]);
-                        print(favlist);
-                      }
-                    });
-                  },
-                  icon: favlist.contains(filmes[index])
-                      ? Icon(Icons.favorite)
-                      : Icon(Icons.favorite_border),
-                  iconSize: 50,
-                )
-              ],
-            ),
-          );
+          ),
+          IconButton(
+            onPressed: () {
+              setState(() {
+                if (favlist.contains(snapshot.data![index]['title'])) {
+                  favlist.remove(snapshot.data![index]['title']);
+                  print(favlist);
+                } else {
+                  favlist.add(snapshot.data![index]['title']);
+                  print(favlist);
+                }
+              });
+            },
+            icon: favlist.contains(snapshot.data![index]['title'])
+                ? Icon(Icons.favorite)
+                : Icon(Icons.favorite_border),
+            iconSize: 50,
+          )
+        ],
+      ),
+    );
   }
 }

@@ -37,6 +37,9 @@ dependencies:
   flutter_inappwebview: ^5.4.3+7
   http: ^0.13.5
 
+  rxdart:
+  dio:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
