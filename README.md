@@ -20,3 +20,5 @@
 
 - Caminho: build\app\outputs\flutter-apk
 - app.debug.apk
+
+![StarWarsGif](https://user-images.githubusercontent.com/108353385/188344693-56b38d43-ed38-4c78-bfde-932a10dd5c2c.gif)
