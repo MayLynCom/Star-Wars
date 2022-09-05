@@ -21,26 +21,26 @@ class _FavoritosState extends State<Favoritos> {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
         child: Column(
           children: [
-            Header(),
+            const Header(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
                   onTap: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomeFilmes()));
+                        MaterialPageRoute(builder: (context) => const HomeFilmes()));
                   },
                   child: Container(
-                    margin: EdgeInsets.only(top: 30),
-                    width: 125,
+                    margin: const EdgeInsets.only(top: 30),
+                    width: 110,
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.black, width: 3),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Filmes',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 16,
                         fontWeight: FontWeight.w500,
                         height: 1.8,
                       ),
@@ -50,19 +50,19 @@ class _FavoritosState extends State<Favoritos> {
                 GestureDetector(
                   onTap: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Personagens()));
+                        MaterialPageRoute(builder: (context) => const Personagens()));
                   },
                   child: Container(
-                    margin: EdgeInsets.only(top: 30),
-                    width: 125,
+                    margin: const EdgeInsets.only(top: 30),
+                    width: 110,
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.black, width: 3),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Personagens',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 16,
                         fontWeight: FontWeight.w500,
                         height: 1.8,
                       ),
@@ -70,17 +70,17 @@ class _FavoritosState extends State<Favoritos> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 30),
-                  width: 125,
+                  margin: const EdgeInsets.only(top: 30),
+                  width: 110,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.green, width: 3),
                     color: Colors.green[100],
                   ),
-                  child: Text(
+                  child: const Text(
                     'Favoritos',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 16,
                       fontWeight: FontWeight.w500,
                       height: 1.8,
                     ),
@@ -89,11 +89,11 @@ class _FavoritosState extends State<Favoritos> {
               ],
             ),
             Container(
-              padding: EdgeInsets.only(top: 20),
+              padding: const EdgeInsets.only(top: 20),
               height: 500,
               child: ListView.builder(
-                itemCount: favlist.length,
-                itemBuilder: (context, index) => buildFav(index),
+                itemCount: favlists.length,
+                itemBuilder: (context, index) => buildFavList(index),
               ),
             ),
           ],
@@ -101,31 +101,21 @@ class _FavoritosState extends State<Favoritos> {
       ),
     );
   }
-  Color teste(){
-    for(String nome in favlist){
-      if(nome == 'A New Hope'){
-        return Colors.red;
-      }
-    }
-    return Colors.lightGreenAccent;
-  }
-
-  Widget buildFav(int index) {
-
+  Widget buildFavList(int index) {
     return Container(
-      margin: EdgeInsets.only(top: 30),
+      margin: const EdgeInsets.only(top: 30),
       width: 350,
       height: 110,
       decoration: BoxDecoration(
         border: Border.all(
-          color: teste(),
+          color: favlists[index].color,
           width: 3,
         ),
       ),
       child: Center(
         child: Text(
-          favlist[index],
-          style: TextStyle(
+          favlists[index].title,
+          style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w500,
             height: 1.5,

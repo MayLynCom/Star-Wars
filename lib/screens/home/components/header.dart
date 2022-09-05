@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:star_wars/screens/home/components/avatar.dart';
-import 'package:star_wars/screens/lists/favoritos.dart';
-import '../../WebViewAapp.dart';
+import '../../web_view_app.dart';
 
 class Header extends StatefulWidget {
   const Header({
@@ -25,11 +24,11 @@ class _HeaderState extends State<Header> {
         GestureDetector(
           onTap: (){
             setState(() {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => WebViewAapp()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const WebViewAapp()));
             });
           },
           child: Container(
-            margin: EdgeInsets.only(top: 30),
+            margin: const EdgeInsets.only(top: 30),
             width: 125,
             height: 50,
             decoration: BoxDecoration(
@@ -37,7 +36,7 @@ class _HeaderState extends State<Header> {
                     color:  Colors.black,
                     width: 3),
                 color: Colors.transparent),
-            child: Text(
+            child: const Text(
               'Site Oficial',
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -50,9 +49,9 @@ class _HeaderState extends State<Header> {
         ),
         IconButton(
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => Avatar()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const Avatar()));
           },
-          icon: Icon(Icons.account_circle_outlined),
+          icon: const Icon(Icons.account_circle_outlined),
           iconSize: 90,
         ),
       ],

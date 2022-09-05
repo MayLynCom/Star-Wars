@@ -5,7 +5,7 @@ import '../../models/lists.dart';
 import '../home/components/header.dart';
 
 class Personagens extends StatefulWidget {
-  Personagens({
+  const Personagens({
     Key? key,
   }) : super(key: key);
 
@@ -21,26 +21,26 @@ class _PersonagensState extends State<Personagens> {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
         child: Column(
           children: [
-            Header(),
+            const Header(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
                   onTap: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomeFilmes()));
+                        MaterialPageRoute(builder: (context) => const HomeFilmes()));
                   },
                   child: Container(
-                    margin: EdgeInsets.only(top: 30),
-                    width: 125,
+                    margin: const EdgeInsets.only(top: 30),
+                    width: 110,
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.black, width: 3),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Filmes',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 16,
                         fontWeight: FontWeight.w500,
                         height: 1.8,
                       ),
@@ -48,17 +48,17 @@ class _PersonagensState extends State<Personagens> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 30),
-                  width: 125,
+                  margin: const EdgeInsets.only(top: 30),
+                  width: 110,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.green, width: 3),
                     color: Colors.green[100],
                   ),
-                  child: Text(
+                  child: const Text(
                     'Personagens',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 16,
                       fontWeight: FontWeight.w500,
                       height: 1.8,
                     ),
@@ -67,19 +67,19 @@ class _PersonagensState extends State<Personagens> {
                 GestureDetector(
                   onTap: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Favoritos()));
+                        MaterialPageRoute(builder: (context) => const Favoritos()));
                   },
                   child: Container(
-                    margin: EdgeInsets.only(top: 30),
-                    width: 125,
+                    margin: const EdgeInsets.only(top: 30),
+                    width: 110,
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.black, width: 3),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Favoritos',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 16,
                         fontWeight: FontWeight.w500,
                         height: 1.8,
                       ),
@@ -89,14 +89,14 @@ class _PersonagensState extends State<Personagens> {
               ],
             ),
             Container(
-              padding: EdgeInsets.only(top: 20),
+              padding: const EdgeInsets.only(top: 20),
               height: 500,
               child: FutureBuilder<List>(
-                future: PersonagensAPI(),
+                future: personagensAPI(),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
-                    return Center(
-                      child: Text('Erro ao carregar Filmes'),
+                    return const Center(
+                      child: Text('Erro ao carregar Personagens'),
                     );
                   }
                   if (snapshot.hasData) {
@@ -106,7 +106,7 @@ class _PersonagensState extends State<Personagens> {
                           buildPersonagens(index, snapshot),
                     );
                   }
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 },
@@ -119,8 +119,10 @@ class _PersonagensState extends State<Personagens> {
   }
 
   Widget buildPersonagens(int index, snapshot) {
+    String personagens = snapshot.data![index]['name'];
+
     return Container(
-      margin: EdgeInsets.only(top: 30),
+      margin: const EdgeInsets.only(bottom: 30),
       width: 350,
       height: 110,
       decoration: BoxDecoration(
@@ -132,8 +134,8 @@ class _PersonagensState extends State<Personagens> {
           Padding(
             padding: const EdgeInsets.only(left: 50),
             child: Text(
-              snapshot.data![index]['name'],
-              style: TextStyle(
+              personagens,
+              style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w500,
                 height: 1.5,
@@ -143,20 +145,18 @@ class _PersonagensState extends State<Personagens> {
           IconButton(
             onPressed: () {
               setState(() {
-                if (favlist.contains(snapshot.data![index]['name'])) {
-                  favlist.remove(snapshot.data![index]['name']);
-                  print(favlist);
+                if (favlists.any((element) => element.title == personagens)) {
+                  favlists.removeWhere((element) => element.title == personagens);
                 } else {
-                  favlist.add(snapshot.data![index]['name']);
-                  print(favlist);
+                  favlists.add(FavList(title: personagens, color: Colors.lightGreenAccent));
                 }
               });
             },
-            icon: favlist.contains(snapshot.data![index]['name'])
-                ? Icon(Icons.favorite)
-                : Icon(Icons.favorite_border),
-            iconSize: 50,
-          )
+            icon: favlists.any((element) => element.title == personagens)
+                ? const Icon(Icons.favorite)
+                : const Icon(Icons.favorite_border),
+            iconSize: 40,
+          ),
         ],
       ),
     );

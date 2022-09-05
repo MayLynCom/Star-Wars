@@ -28,7 +28,7 @@ class _WebViewAappState extends State<WebViewAapp> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              margin: EdgeInsets.only(top: 30),
+              margin: const EdgeInsets.only(top: 30),
               width: 125,
               height: 50,
               decoration: BoxDecoration(
@@ -36,7 +36,7 @@ class _WebViewAappState extends State<WebViewAapp> {
                       color:Colors.green,
                       width: 3),
                   color: Colors.green[100]),
-              child: Text(
+              child: const Text(
                 'Site Oficial',
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -48,9 +48,9 @@ class _WebViewAappState extends State<WebViewAapp> {
             ),
             IconButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => HomeFilmes()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeFilmes()));
               },
-              icon: Icon(Icons.account_circle_outlined),
+              icon: const Icon(Icons.account_circle_outlined),
               iconSize: 90,
             ),
           ],
