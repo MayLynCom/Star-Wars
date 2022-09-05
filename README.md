@@ -8,6 +8,8 @@
 - Executar o Pub Get.
 - Rodar a aplicação no Emulador ou Navegador.
 
+- ou pode instalar o APK no celular
+
 
 <h2>Funções que não foram incrementadas:</h2>
 
